@@ -24,16 +24,26 @@ function App() {
   }
   // local storage
 
-  useEffect(() => {
-    const todos = JSON.parse(localStorage.getItem("todos"))
-  }, [])
+  // useEffect(() => {
+  //   try {
+  //     const todos = JSON.parse(localStorage.getItem("todos"))
+  //   } catch (error) {
+  //     console.log("Can not get any item Error:", error);
 
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos))
-  }, [todos])
+  //   }
+  // }, [])
+
+  // useEffect(() => {
+  //   try {
+  //     localStorage.setItem("todos", JSON.stringify(todos))
+  //   } catch (error) {
+  //     console.log("Can not get Local Value form local Storage Error:", error);
+
+  //   }
+  // }, [])
 
   return (
-    <TodoProvider vlue={{ todos, addTodo, deleteTodo, updateTodo, deleteTodo, toggleComplete }}>
+    <TodoProvider value={{ todos, addTodo, deleteTodo, updateTodo, deleteTodo, toggleComplete }}>
       <div className="bg-[#172842] min-h-screen py-8">
         <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
           <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
@@ -45,6 +55,7 @@ function App() {
           <div className="flex flex-wrap gap-y-3">
             {/*Loop and Add TodoItem here */}
             {todos.map((todo) => (
+
               <div key={todo.id} className="w-full"> <TodoItem todo={todo} /> </div>
             ))}
           </div>
